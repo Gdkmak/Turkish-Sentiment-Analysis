@@ -1,5 +1,7 @@
 import pandas as pd
+import preprocessing as pre
 from sklearn import model_selection
+
 
 if __name__ == '__main__':
   
@@ -8,13 +10,13 @@ if __name__ == '__main__':
   with open('/content/Movie-review-sentiment/input/tr_polarity.pos', 'r', encoding = "ISO-8859-1") as file_pos:
     for row in file_pos:   
         sentence = row
-        sentiment.append(sentence)
+        sentiment.append(pre.preprocess(sentence))
         target.append('positive')
       
   with open('/content/Movie-review-sentiment/input/tr_polarity.neg', 'r', encoding = 'ISO-8859-1') as file_neg: 
     for row in file_neg: 
         sentence = row
-        sentiment.append(sentence)
+        sentiment.append(pre.preprocess(sentence))
         target.append('negative')
 
   df = pd.DataFrame({'sentiment': sentiment, 'target': target, 'kfold': -1 })
