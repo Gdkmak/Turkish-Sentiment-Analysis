@@ -1,4 +1,4 @@
-import os 
+import sys 
 import pandas as pd 
 import matplotlib.pyplot as plt
 import joblib
@@ -13,12 +13,12 @@ from sklearn.metrics import precision_recall_curve
 from sklearn.metrics import plot_precision_recall_curve
 from sklearn.metrics import average_precision_score, confusion_matrix
 from sklearn.naive_bayes import MultinomialNB
-import dispatcher
+from . import dispatcher
 
 
-TRAINING_DATA = 'input/train_fold.csv' # os.environ.get("TRAINING_DATA")
-FOLD = 0 # int(os.environ.get("FLOD"))
-MODEL = os.environ.get("MODEL")
+TRAINING_DATA = sys.argv[0]
+FOLD = int(sys.argv[1])
+MODEL = sys.argv[2]
 
 FOLD_MAPPING = {
   0: [1, 2, 3, 4],
@@ -30,15 +30,9 @@ FOLD_MAPPING = {
 
 if __name__ == '__main__': 
   df = pd.read_csv(TRAINING_DATA)
+  df = df.replace(['positive','negative'], [1,0])
+  df = df.dropna()
   
-###### Just for now
-  to_drop = []
-  for i in range(df.shape[0]): 
-    if str(df.loc[i, 'sentiment']) == 'nan':
-      to_drop.append(i)
-  df = df.drop(to_drop)
-######
-
   train_df = df[df.kfold.isin(FOLD_MAPPING.get(FOLD))]
   valid_df = df[df.kfold== FOLD]
 
@@ -58,14 +52,18 @@ if __name__ == '__main__':
   xvalid_tfv = tfv.transform(xvalid)
 
 # train the model
-  #clf = dispatcher.MODELS[MODEL]
-  clf  = MultinomialNB()
+  clf = dispatcher.MODELS[MODEL]
+  #clf  = MultinomialNB()
   clf.fit(xtrain_tfv, ytrain)
   preds = clf.predict(xvalid_tfv)
 
 # evaluate the results 
-  print(confusion_matrix(yvalid, preds))
-
+  average_precision = average_precision_score(yvalid, preds)
+  print('Average precision-recall score: {0:0.2f}'.format(
+      average_precision))
+  disp = plot_precision_recall_curve(clf, xvalid_tfv, yvalid)
+  disp.ax_.set_title('2-class Precision-Recall curve: '
+                   'AP={0:0.2f}'.format(average_precision))
 
   # save the model
   joblib.dump(clf, f'models/{MODEL}.pkl')
