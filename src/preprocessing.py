@@ -1,5 +1,5 @@
-import correction
-import utils
+from . import correction
+from . import utils
 import csv
 
 STOPWORDS = []

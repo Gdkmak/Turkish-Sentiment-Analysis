@@ -1,8 +1,10 @@
 TRAINING_DATA='input/train_fold.csv'
-FOLD=0
 MODEL=$1
-export TRAINING_DATA 
-export FOLD 
-export MODEL 
+TEST_DATA=$2 
 
-python -m src.train
+export TRAINING_DATA 
+export MODEL 
+export TEST_DATA
+
+# python -m src.train
+python -m src.predict

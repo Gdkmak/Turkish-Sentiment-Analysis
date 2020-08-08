@@ -1,5 +1,5 @@
 import pandas as pd
-import preprocessing as pre
+from . import preprocessing as pre
 from sklearn import model_selection
 
 
