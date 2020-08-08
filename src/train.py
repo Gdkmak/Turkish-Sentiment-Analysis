@@ -1,4 +1,4 @@
-import sys 
+import os 
 import pandas as pd 
 import matplotlib.pyplot as plt
 import joblib
@@ -16,9 +16,9 @@ from sklearn.naive_bayes import MultinomialNB
 from . import dispatcher
 
 
-TRAINING_DATA = sys.argv[0]
-FOLD = int(sys.argv[1])
-MODEL = sys.argv[2]
+TRAINING_DATA = os.environ.get('TRAINING_DATA')
+FOLD = int(os.environ.get('FOLD'))
+MODEL = os.environ.get('MODEL')
 
 FOLD_MAPPING = {
   0: [1, 2, 3, 4],
@@ -53,7 +53,6 @@ if __name__ == '__main__':
 
 # train the model
   clf = dispatcher.MODELS[MODEL]
-  #clf  = MultinomialNB()
   clf.fit(xtrain_tfv, ytrain)
   preds = clf.predict(xvalid_tfv)
 
@@ -66,7 +65,8 @@ if __name__ == '__main__':
                    'AP={0:0.2f}'.format(average_precision))
 
   # save the model
-  joblib.dump(clf, f'models/{MODEL}.pkl')
+  joblib.dump(clf, f'models/{MODEL}_FOLD_{FOLD}.pkl')
+  joblib.dump(tfv, f'models/tfv.pkl')
 
 
 
