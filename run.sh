@@ -7,4 +7,5 @@ export MODEL
 export TEST_DATA
 
 # python -m src.train
-python -m src.predict
+python -m src.ML.predict
+#python -m src.train_deeplearning

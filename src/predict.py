@@ -4,7 +4,7 @@ import joblib
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from . import dispatcher
-from . import preprocessing as pre
+from src import preprocessing as pre
 
 
 TEST_DATA = os.environ.get('TEST_DATA')
@@ -12,7 +12,7 @@ MODEL = os.environ.get('MODEL')
 
 def predict(): 
   sentiment = [pre.preprocess(TEST_DATA)]
-  tfv = joblib.load(os.path.join('models', 'tfv.pkl'))
+  tfv = joblib.load(os.path.join(pardir, 'models', 'tfv.pkl'))
   xtest_tfv =  tfv.transform(sentiment) 
   for FOLD in range(5): 
     clf = joblib.load(os.path.join('models', f'{MODEL}_FOLD_{FOLD}.pkl'))
