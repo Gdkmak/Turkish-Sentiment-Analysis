@@ -1,8 +1,8 @@
-import tensorflow as tf
 import numpy as np 
 import pandas as pd
 import os
-import joblib
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
+import tensorflow as tf
 
 from tensorflow.keras.layers.experimental.preprocessing import TextVectorization
 from tensorflow.keras import layers

@@ -6,6 +6,6 @@ export TRAINING_DATA
 export MODEL 
 export TEST_DATA
 
-# python -m src.train
-python -m src.ML.predict
-#python -m src.train_deeplearning
+#python -m src.Machine_Learning.train
+#python -m src.Machine_Learning.predict
+python -m src.Deep_Learning.predict

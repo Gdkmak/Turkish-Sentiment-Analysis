@@ -1,9 +1,11 @@
-from . import correction
-from . import utils
+import os, sys
 import csv
 
-STOPWORDS = []
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import correction
+import utils
 
+STOPWORDS = []
 
 with open('./src/stopwords-tr.csv', 'r', encoding='utf-8') as ff:
   read = csv.reader(ff, delimiter = '\n')
