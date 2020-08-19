@@ -23,4 +23,4 @@ if __name__ == '__main__':
 
     ds = pd.DataFrame({'sentiment': sentiment, 'target': target})
     ds = ds.sample(frac= 1)
-    ds.to_csv('input/no_preprocessing_train_fold.csv', index= False)
+    ds.to_csv('input/non_preprocessing_train_fold.csv', index= False)

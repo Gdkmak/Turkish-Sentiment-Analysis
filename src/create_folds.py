@@ -1,5 +1,4 @@
 import pandas as pd
-from . import preprocessing as pre
 from sklearn import model_selection
 
 
@@ -7,16 +6,16 @@ if __name__ == '__main__':
   
   sentiment = [] 
   target = [] 
-  with open('/content/Movie-review-sentiment/input/tr_polarity.pos', 'r', encoding = "ISO-8859-1") as file_pos:
+  with open('input/tr_polarity.pos', 'r', encoding = "ISO-8859-1") as file_pos:
     for row in file_pos:   
         sentence = row
-        sentiment.append(pre.preprocess(sentence))
+        sentiment.append(sentence)
         target.append('positive')
       
-  with open('/content/Movie-review-sentiment/input/tr_polarity.neg', 'r', encoding = 'ISO-8859-1') as file_neg: 
+  with open('input/tr_polarity.neg', 'r', encoding = 'ISO-8859-1') as file_neg: 
     for row in file_neg: 
         sentence = row
-        sentiment.append(pre.preprocess(sentence))
+        sentiment.append(sentence)
         target.append('negative')
 
   df = pd.DataFrame({'sentiment': sentiment, 'target': target, 'kfold': -1 })
@@ -28,4 +27,4 @@ if __name__ == '__main__':
     print(len(train_idx), len(val_idx))
     df.loc[val_idx, 'kfold']  = fold
 
-  df.to_csv('/content/Movie-review-sentiment/input/train_fold.csv')
+  df.to_csv('input/no_preprocessing_train.csv')

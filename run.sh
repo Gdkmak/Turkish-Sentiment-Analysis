@@ -1,11 +1,14 @@
 TRAINING_DATA='input/train_fold.csv'
 MODEL=$1
-TEST_DATA=$2 
 
 export TRAINING_DATA 
 export MODEL 
-export TEST_DATA
 
-#python -m src.Machine_Learning.train
-#python -m src.Machine_Learning.predict
-python -m src.Deep_Learning.predict
+#python3 -m src.Machine_Learning.train
+#python3 -m src.Machine_Learning.app
+
+#python3 -m src.Deep_Learning.train
+#python3 -m src.Deep_Learning.app
+
+#python3 -m src.BERT.train
+#python3 -m src.BERT.app
