@@ -132,7 +132,7 @@ dmypy.json
 
 # input data and models
 models/
-
+nonprocessed_data_models/ 
 
 # data files
 *.h5
