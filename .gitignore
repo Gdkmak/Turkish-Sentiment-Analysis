@@ -132,7 +132,8 @@ dmypy.json
 
 # input data and models
 models/
-nonprocessed_data_models/ 
+nonprocessed_data_models/
+PYTORCH_PRETRAINED_BERT_CACHE/
 
 # data files
 *.h5
