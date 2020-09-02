@@ -14,7 +14,7 @@ There is a shell script `run.sh` that makes it easy to run python scripts. It ha
 
 The first app is the machine learning model (logistic regression and naive bayes). In the shell script, uncomment the training command then 
 in your terminal run either one of these commands (depends on which ML techniques you want to use to train your model) `sh run.sh LR` or `sh run.sh NB`
-Once the modle is done training you can run the app and test your results `app.py`. Here **Flask** comes to the play. It will create an instance of web application that starts on (defulat) `localhost:5000`. Navigate to `predict` route and add two parameters `model` and `sentence` you need to test. The url will be like this `localhost:5000/predict?sentencce=YOUR SENTENCE&model=LR or NB`  
+Once the modle is done training you can run the app and test your results `app.py`. Here **Flask** comes to the play. It will create an instance of web application that starts on (default) `localhost:5000`. Navigate to `predict` route and add two parameters `model` and `sentence` you need to test. The url will be like this `localhost:5000/predict?sentencce=YOUR SENTENCE&model=LR or NB`  
 
 The result yielded is probabiliy of a given sentencce to be positive and negative 
 
