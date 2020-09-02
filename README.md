@@ -18,7 +18,7 @@ Once the modle is done training you can run the app and test your results `app.p
 
 The result yielded is probabiliy of a given sentencce to be positive and negative 
 
-![results](image/probability.png)
+![results](probability.png)
 
 - Deep Learning: 
 
