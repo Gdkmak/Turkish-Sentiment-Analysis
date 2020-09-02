@@ -17,7 +17,7 @@ python3 -m src.Machine_Learning.train
 # first train and then app 
 
 #python3 -m src.Deep_Learning.train
-python3 -m src.Deep_Learning.app
+#python3 -m src.Deep_Learning.app
 
 # For BERT
 # run one command at a time
