@@ -1,5 +1,5 @@
+from . import config
 import torch
-import config
 
 
 def tokenization(tokenizer, review):

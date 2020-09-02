@@ -6,10 +6,6 @@ import time
 from flask import Flask, request
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import dispatcher
-import preprocessing as pre
-
 memory = joblib.Memory("../input/", verbose=0)
 
 app = Flask(__name__)

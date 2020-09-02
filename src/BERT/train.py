@@ -1,13 +1,13 @@
 import torch
-import config
-import dataset
-import engine
+from . import config
+from . import dataset
+from . import engine
 import pandas as pd
 import torch.nn as nn
 import numpy as np
 import logging
 
-from model import BERTBaseUncased
+from . import model as m
 from sklearn import model_selection
 from sklearn import metrics
 from transformers import AdamW
@@ -43,7 +43,7 @@ def run():
     )
 
     device = torch.device("cuda")
-    model = BERTBaseUncased()
+    model = m.BERTBaseUncased()
     model.to(device)
 
     param_optimizer = list(model.named_parameters())
